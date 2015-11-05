@@ -2,7 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+        User: {{playlist.userId.name}} <br />
+        Location: {{playlist.locationId.name}}<br />
+        Amount: {{playlist.amount}}<br />
       </ion-item>
     </ion-list>
   </ion-content>
