@@ -9,7 +9,7 @@
  */
 
 //Get all the giftcards, or create one
-angular.module('starter', ['ngResource'])
+angular.module('starter.services', ['ngResource'])
   .factory('Transactions', ['$resource', function($resource) {
 
     return $resource('http://localhost:3000/transactions', {}, {
