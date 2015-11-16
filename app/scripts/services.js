@@ -12,7 +12,7 @@
 angular.module('starter.services', ['ngResource'])
   .factory('Transactions', ['$resource', function($resource) {
 
-    return $resource('http://localhost:3000/transactions', {}, {
+    return $resource('http://jnode.ngrok.kondeo.com:8080/transactions', {}, {
       get: {
         method: 'GET',
         params: {},

@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, $resource, Transactions) {
+.controller('TransactionsCtrl', function($scope, $resource, Transactions) {
   $scope.playlists = Transactions.get();
 })
 
