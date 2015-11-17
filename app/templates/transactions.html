@@ -1,10 +1,11 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="Transactions">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        User: {{playlist.userId.name}} <br />
-        Location: {{playlist.locationId.name}}<br />
-        Amount: {{playlist.amount}}<br />
+      <ion-item ng-repeat="transaction in transactions" href="#/app/playlists/{{playlist.id}}">
+        Owner: {{transaction.locationId.ownerId.name}} <br />
+        Location: {{transaction.locationId.name}}<br />
+        User: {{transaction.userId.name}}<br />
+        Amount: {{transaction.amount}}<br />
       </ion-item>
     </ion-list>
   </ion-content>

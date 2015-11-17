@@ -42,8 +42,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TransactionsCtrl', function($scope, $resource, Transactions) {
-  $scope.playlists = Transactions.get();
+  $scope.transactions = Transactions.query();
 })
 
 .controller('TransactionCtrl', function($scope, $stateParams) {
+
 });
