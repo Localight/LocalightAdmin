@@ -43,6 +43,15 @@ angular.module('starter.controllers', [])
 
 .controller('TransactionsCtrl', function($scope, $resource, Transactions) {
   $scope.transactions = Transactions.query();
+  var state = false;
+  $scope.dfd = function(){
+      state = true;
+      console.log(state);
+  }
+  $scope.dfdn = function(){
+      state = false;
+      console.log(state);
+  }
 })
 
 .controller('TransactionCtrl', function($scope, $stateParams) {

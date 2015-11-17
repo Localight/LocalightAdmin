@@ -1,12 +1,26 @@
 <ion-view view-title="Transactions">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="transaction in transactions" href="#/app/playlists/{{playlist.id}}">
-        Owner: {{transaction.locationId.ownerId.name}} <br />
-        Location: {{transaction.locationId.name}}<br />
-        User: {{transaction.userId.name}}<br />
-        Amount: {{transaction.amount}}<br />
-      </ion-item>
+        <li class="item item-checkbox">
+            <label class="checkbox">
+                <input type="checkbox">
+            </label>
+            Flux Capacitor
+        </li>
+
+        <div class="button-bar">
+          <a class="button" style="border-left: none;">First</a>
+          <a class="button">Filter Date</a>
+          <a class="button" style="border-right: none;">Select All</a>
+        </div>
+
+        <ion-item ng-repeat="transaction in transactions" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
+          Owner: {{transaction.locationId.ownerId.name}} <br />
+          Location: {{transaction.locationId.name}}<br />
+          User: {{transaction.userId.name}}<br />
+          Amount: {{transaction.amount}}<br />
+          <ion-option-button class="button-positive">Checkmark</ion-option-button>
+        </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
