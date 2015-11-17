@@ -45,5 +45,5 @@ angular.module('starter.controllers', [])
   $scope.playlists = Transactions.get();
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('TransactionCtrl', function($scope, $stateParams) {
 });
