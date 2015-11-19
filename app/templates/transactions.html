@@ -4,7 +4,7 @@
 
         <li class="item item-checkbox">
             <label class="checkbox">
-                <input type="checkbox">
+                <input type="checkbox" ng-model="filterOptions.unpaid">
             </label>
             Unpaid Transactions Only
         </li>
@@ -20,7 +20,7 @@
             <a class="button button-positive filterOptions" style="border-right: none;">Select All</a>
         </div>
 
-        <ion-item ng-repeat="transaction in transactions" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
+        <ion-item ng-repeat="transaction in transactions | transactionsByOption:filterOptions" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
           Owner: {{transaction.locationId.ownerId.name}} <br />
           Location: {{transaction.locationId.name}}<br />
           User: {{transaction.userId.name}}<br />

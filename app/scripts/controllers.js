@@ -53,6 +53,8 @@ angular.module('starter.controllers', [])
       console.log(state);
   }
 
+  $scope.filterOptions = {};
+
   $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
      todayLabel: 'Today',  //Optional
