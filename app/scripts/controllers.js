@@ -85,7 +85,7 @@ angular.module('starter.controllers', [])
       if (typeof(val) === 'undefined') {
         console.log('No date selected');
       } else {
-        console.log('Selected date is : ', val)
+        $scope.filterOptions.startDate = val;
       }
     };
 
@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
        if (typeof(val) === 'undefined') {
          console.log('No date selected');
        } else {
-         console.log('Selected date is : ', val)
+           $scope.filterOptions.endDate = val;
        }
      };
 })
