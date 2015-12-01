@@ -42,20 +42,28 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TransactionsCtrl', function($scope, $resource, Transactions) {
-  $scope.transactions = Transactions.query();
-  var state = false;
-  $scope.dfd = function(){
-      state = true;
-      console.log(state);
-  }
-  $scope.dfdn = function(){
-      state = false;
-      console.log(state);
-  }
+    $scope.filterOptions = {};
+    $scope.getTransactions = function(){
+        var unpaid;
+        if($scope.filterOptions == 1) unpaid = "true";
+        $scope.transactions = Transactions.query({
+            paid: unpaid,
+            created_after: $scope.filterOptions.startDate,
+            created_before: $scope.filterOptions.endDate
+        }, function(){
+            console.log("dfd");
+        });
 
-  $scope.filterOptions = {};
+    }
 
-  $scope.datepickerFrom = {
+    $scope.getTransactions();
+
+    $scope.selectedItems = {};
+    $scope.fuckinHell = function(){
+        console.log($scope.selectedItems);
+    }
+
+    $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
      todayLabel: 'Today',  //Optional
      closeLabel: 'Close',  //Optional
@@ -79,17 +87,18 @@ angular.module('starter.controllers', [])
      },
      dateFormat: 'dd-MM-yyyy', //Optional
      closeOnSelect: false, //Optional
-   };
+    };
 
-   var datepickerFromSelect = function (val) {
+    var datepickerFromSelect = function (val) {
       if (typeof(val) === 'undefined') {
         console.log('No date selected');
       } else {
         $scope.filterOptions.startDate = val;
+        $scope.getTransactions();
       }
     };
 
-   $scope.datepickerTo = {
+    $scope.datepickerTo = {
       titleLabel: 'Title',  //Optional
       todayLabel: 'Today',  //Optional
       closeLabel: 'Close',  //Optional
@@ -120,8 +129,30 @@ angular.module('starter.controllers', [])
          console.log('No date selected');
        } else {
            $scope.filterOptions.endDate = val;
+           $scope.getTransactions();
        }
      };
+
+
+     $scope.selectAll = function(){
+        for(var i=0;i<$scope.transactions.length;i++){
+            $scope.selectedItems[$scope.transactions[i]._id] = true;
+        }
+        console.log($scope.selectedItems);
+     }
+
+     $scope.initiatePayout = function(){
+         $scope.selectedItems["fuck"] = true;
+         var payout = [];
+         for(var i=0;i<$scope.transactions.length;i++){
+             console.log($scope.selectedItems);
+             if($scope.selectedItems[$scope.transactions[i]._id]){
+                 payout.add($scope.transactions[i]._id);
+                 console.log("dfdasdfs");
+             }
+         }
+         console.log(payout);
+     }
 })
 
 .controller('TransactionCtrl', function($scope, $stateParams) {

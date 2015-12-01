@@ -17,16 +17,20 @@
                 <a class="button button-positive filterOptions">End Date</a>
             </ionic-datepicker>
 
-            <a class="button button-positive filterOptions" style="border-right: none;">Select All</a>
+            <a class="button button-positive filterOptions" style="border-right: none;" ng-click="selectAll()">Select All</a>
         </div>
+        {{transactionsFiltered}}
+        <li class="item item-checkbox" ng-repeat="transaction in transactions track by transaction._id" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="selectedItems[transaction.name]" />
+            </label>
+            Owner: {{transaction.locationId.ownerId.name}} <br />
+            Location: {{transaction.locationId.name}}<br />
+            User: {{transaction.userId.name}}<br />
+            Amount: {{transaction.amount}}<br />
 
-        <ion-item ng-repeat="transaction in transactions | transactionsByOption:filterOptions" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
-          Owner: {{transaction.locationId.ownerId.name}} <br />
-          Location: {{transaction.locationId.name}}<br />
-          User: {{transaction.userId.name}}<br />
-          Amount: {{transaction.amount}}<br />
-          <ion-option-button class="button-positive">Checkmark</ion-option-button>
-        </ion-item>
+
+        </li>
     </ion-list>
   </ion-content>
 </ion-view>
