@@ -20,9 +20,9 @@
             <a class="button button-positive filterOptions" style="border-right: none;" ng-click="selectAll()">Select All</a>
         </div>
         {{transactionsFiltered}}
-        <li class="item item-checkbox" ng-repeat="transaction in transactions track by transaction._id" href="#/app/playlists/{{playlist.id}}" on-drag-left="dfd();" on-drag-right="dfdn();">
+        <li class="item item-checkbox" ng-repeat="transaction in transactions track by transaction._id" ng-click="testing()" >
             <label class="checkbox">
-                <input type="checkbox" ng-model="selectedItems[transaction.name]" />
+                <input type="checkbox" ng-model="selectedItems[transaction._id]" />
             </label>
             Owner: {{transaction.locationId.ownerId.name}} <br />
             Location: {{transaction.locationId.name}}<br />

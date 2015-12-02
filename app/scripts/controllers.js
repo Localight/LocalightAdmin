@@ -12,6 +12,9 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
   $scope.loginData = {};
 
+  //Selected items for payouts
+  $scope.selectedItems = {};
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -51,17 +54,13 @@ angular.module('starter.controllers', [])
             created_after: $scope.filterOptions.startDate,
             created_before: $scope.filterOptions.endDate
         }, function(){
+            //Test Code
             console.log("dfd");
         });
 
     }
 
     $scope.getTransactions();
-
-    $scope.selectedItems = {};
-    $scope.fuckinHell = function(){
-        console.log($scope.selectedItems);
-    }
 
     $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
@@ -138,20 +137,18 @@ angular.module('starter.controllers', [])
         for(var i=0;i<$scope.transactions.length;i++){
             $scope.selectedItems[$scope.transactions[i]._id] = true;
         }
-        console.log($scope.selectedItems);
      }
 
      $scope.initiatePayout = function(){
-         $scope.selectedItems["fuck"] = true;
          var payout = [];
          for(var i=0;i<$scope.transactions.length;i++){
-             console.log($scope.selectedItems);
              if($scope.selectedItems[$scope.transactions[i]._id]){
-                 payout.add($scope.transactions[i]._id);
-                 console.log("dfdasdfs");
+                 payout.push($scope.transactions[i]._id);
              }
          }
          console.log(payout);
+
+         //Should empty the selected Items array here
      }
 })
 
