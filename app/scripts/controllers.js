@@ -169,7 +169,11 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('PayoutsCtrl', function($scope, $resource, $location, Transactions, Payout) {
+.controller('PayoutsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
+    $scope.goToPayout = function(payoutId){
+        console.log(payoutId);
+        $state.go('app.payout', {payoutId: payoutId});
+    }
     $scope.payouts = Payout.query();
     console.log($scope.payouts);
 
