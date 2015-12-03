@@ -3,12 +3,10 @@
     <ion-list>
 
         <li class="item item-checkbox" ng-repeat="payout in payouts track by payout._id">
-            Locations: <repeated-list ng-repeat="merchant in payout.merchants">{{merchant.name}}</repeated-list> <br />
+            Locations: <repeated-list ng-repeat="locationPayout in payout.locations">{{locationPayout.location.name}}, </repeated-list> <br />
             Method: {{payout.method}}<br />
             Created: {{payout.created}}<br />
             Total Amount: {{payout.amount}}<br />
-
-
         </li>
     </ion-list>
   </ion-content>
