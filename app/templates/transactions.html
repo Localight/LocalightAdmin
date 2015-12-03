@@ -22,7 +22,7 @@
         {{transactionsFiltered}}
         <li class="item item-checkbox" ng-repeat="transaction in transactions track by transaction._id" ng-click="testing()" >
             <label class="checkbox">
-                <input type="checkbox" ng-model="selectedItems[transaction._id]" />
+                <input type="checkbox" ng-model="selectedItems[transaction._id]" ng-click="refreshSelected()" />
             </label>
             Owner: {{transaction.locationId.ownerId.name}} <br />
             Location: {{transaction.locationId.name}}<br />

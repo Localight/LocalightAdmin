@@ -9,8 +9,8 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button ng-controller="TransactionsCtrl" ng-if="true" class="button button-clear button-positive" ng-click="initiatePayout()">
-            Payout
+        <button ng-controller="TransactionsCtrl" ng-if="selectedItemsLength > 0" class="button button-clear button-positive" ng-click="initiatePayout()">
+            Payout {{selectedItemsLength}} Item<if ng-if="selectedItemsLength > 1">s</if>
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>

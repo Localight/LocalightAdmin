@@ -14,6 +14,16 @@ angular.module('starter.controllers', [])
 
   //Selected items for payouts
   $scope.selectedItems = {};
+  $scope.selectedItemsLength = 0;
+  $scope.refreshSelected = function(){
+      $scope.selectedItemsLength = 0;
+      var keys = Object.keys($scope.selectedItems);
+      for(var i=0;i<keys.length;i++){
+          if($scope.selectedItems[keys[i]]){
+              $scope.selectedItemsLength++;
+          }
+      }
+  }
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -45,6 +55,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TransactionsCtrl', function($scope, $resource, $location, Transactions, Payout) {
+
     $scope.filterOptions = {};
     $scope.getTransactions = function(){
         var unpaid;
@@ -137,6 +148,7 @@ angular.module('starter.controllers', [])
         for(var i=0;i<$scope.transactions.length;i++){
             $scope.selectedItems[$scope.transactions[i]._id] = true;
         }
+        $scope.refreshSelected();
      }
 
      $scope.initiatePayout = function(){
