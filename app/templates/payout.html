@@ -18,11 +18,11 @@
               &nbsp;
               Group {{group.name}}
             </ion-item>
-            <ion-item class="item-accordion"
+            <ion-item class="item-accordion droplist-item"
                       ng-repeat="item in group.items"
                       ng-show="isGroupShown(group)"
                       ng-click="goToTransaction('{{item.id}}')">
-              {{item.title}}
+              {{item.title}} <chevron class="icon-right ion-chevron-right"></chevron>
             </ion-item>
           </div>
         </ion-list>

@@ -5,6 +5,14 @@
 .list .droplist {
     border-bottom: none;
 }
+.list .droplist-item chevron {
+    float: right;
+}
+.payouts-list chevron {
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 20px;
+}
 .list .item.item-accordion {
   line-height: 38px;
   padding-top: 0;

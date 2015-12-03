@@ -2,11 +2,12 @@
   <ion-content>
     <ion-list>
 
-        <li class="item item-checkbox" ng-repeat="payout in payouts track by payout._id" ng-click="goToPayout('{{payout._id}}')">
+        <li class="item payouts-list" ng-repeat="payout in payouts track by payout._id" ng-click="goToPayout('{{payout._id}}')">
             Locations: <repeated-list ng-repeat="locationPayout in payout.locations">{{locationPayout.location.name}}, </repeated-list> <br />
             Method: {{payout.method}}<br />
             Created: {{payout.created}}<br />
             Total Amount: {{payout.amount}}<br />
+            <chevron class="icon-right ion-chevron-right"></chevron>
         </li>
     </ion-list>
   </ion-content>
