@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('TransactionsCtrl', function($scope, $resource, $location, Transactions, Payout) {
+.controller('TransactionsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
 
     $scope.filterOptions = {};
     $scope.getTransactions = function(){
@@ -64,9 +64,6 @@ angular.module('starter.controllers', [])
             paidOut: unpaid,
             created_after: $scope.filterOptions.startDate,
             created_before: $scope.filterOptions.endDate
-        }, function(){
-            //Test Code
-            console.log("dfd");
         });
 
     }
@@ -166,7 +163,7 @@ angular.module('starter.controllers', [])
 
         Payout.create(payload, function(payout){
             console.log(payout);
-            $state.go('app.single', {url: "/:" + payout._id});
+            $state.go('app.payout', {payoutId: payout._id});
         }, function(err){
             //Error
         });
