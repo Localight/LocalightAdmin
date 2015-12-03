@@ -2,6 +2,9 @@
 .filterOptions {
     border-radius: 0px;
 }
+.list .droplist {
+    border-bottom: none;
+}
 .list .item.item-accordion {
   line-height: 38px;
   padding-top: 0;
