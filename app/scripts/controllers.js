@@ -59,9 +59,9 @@ angular.module('starter.controllers', [])
     $scope.filterOptions = {};
     $scope.getTransactions = function(){
         var unpaid;
-        if($scope.filterOptions == 1) unpaid = "true";
+        if($scope.filterOptions.unpaid == true) unpaid = "false";
         $scope.transactions = Transactions.query({
-            paid: unpaid,
+            paidOut: unpaid,
             created_after: $scope.filterOptions.startDate,
             created_before: $scope.filterOptions.endDate
         }, function(){
