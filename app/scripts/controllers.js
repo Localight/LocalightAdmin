@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('TransactionsCtrl', function($scope, $resource, Transactions) {
+.controller('TransactionsCtrl', function($scope, $resource, $location, Transactions, Payout) {
     $scope.filterOptions = {};
     $scope.getTransactions = function(){
         var unpaid;
@@ -146,12 +146,38 @@ angular.module('starter.controllers', [])
                  payout.push($scope.transactions[i]._id);
              }
          }
-         console.log(payout);
+
+         var payload = {
+             transactions: payout,
+             method: "check"
+         }
+
+        Payout.create(payload, function(payout){
+            console.log(payout);
+            $state.go('app.single', {url: "/:" + payout._id});
+        }, function(err){
+            //Error
+        });
 
          //Should empty the selected Items array here
      }
 })
 
 .controller('TransactionCtrl', function($scope, $stateParams) {
+
+})
+
+
+
+.controller('PayoutsCtrl', function($scope, $resource, $location, Transactions, Payout) {
+    $scope.payouts = Payout.query();
+    console.log($scope.payouts);
+
+})
+
+.controller('PayoutCtrl', function($scope, $stateParams, $resource, $location, Transactions, Payout) {
+    $scope.payout = Payout.get({
+        id: $stateParams.payoutId
+    });
 
 });

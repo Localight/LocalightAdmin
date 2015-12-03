@@ -59,15 +59,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-  .state('app.single', {
-    url: '/transactions/:transactionId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/transaction.html',
-        controller: 'TransactionCtrl'
+    .state('app.transaction', {
+      url: '/transactions/:transactionId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/transaction.html',
+          controller: 'TransactionCtrl'
+        }
       }
-    }
-  });
+    })
+    .state('app.payouts', {
+      url: '/payouts',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/payouts.html',
+          controller: 'PayoutsCtrl'
+        }
+      }
+    })
+    .state('app.payout', {
+      url: '/payouts/:payoutId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/payout.html',
+          controller: 'PayoutCtrl'
+        }
+      }
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/transactions');
 });
