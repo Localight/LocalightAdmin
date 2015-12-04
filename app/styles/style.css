@@ -38,3 +38,9 @@
     right: 10px;
     z-index: 20;
 }
+.menuIcon {
+    margin-bottom: 2px;
+    margin-right: 5px;
+    width: 35px;
+    vertical-align: middle;
+}
