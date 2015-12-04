@@ -179,8 +179,12 @@ angular.module('starter.controllers', [])
      }
 })
 
-.controller('TransactionCtrl', function($scope, $stateParams) {
-
+.controller('TransactionCtrl', function($scope, $stateParams, Transactions) {
+    $scope.transaction = Transactions.get({
+        id: $stateParams.transactionId
+    }, function(result){
+        console.log(result);
+    })
 })
 
 
