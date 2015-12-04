@@ -27,7 +27,7 @@
             Owner: {{transaction.locationId.ownerId.name}} <br />
             Location: {{transaction.locationId.name}}<br />
             User: {{transaction.userId.name}}<br />
-            Amount: {{transaction.amount}}<br />
+            Amount: ${{transaction.amount/100}}<br />
             <a class="button button-outline icon-right ion-chevron-right button-positive transactions-button-view" ng-click="goToTransaction(transaction._id)">View</a>
 
         </li>

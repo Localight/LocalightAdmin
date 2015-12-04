@@ -3,8 +3,8 @@
       <div class="card">
         <div class="item item-text-wrap">
             Method: {{payout.method}}<br />
-            Created: {{payout.created}}<br />
-            Total Amount: {{payout.amount}}<br /><br />
+            Created: {{formatDate(payout.created)}}<br />
+            Total Amount: ${{payout.amount/100}}<br /><br />
             Locations included in this payout:
         </div>
 

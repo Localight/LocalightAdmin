@@ -28,6 +28,10 @@ angular.module('starter.controllers', [])
       }
   }
 
+  $scope.formatDate = function(date){
+      return new Date(date).toDateString("en-us", {year: "numeric", month: "short", day: "numeric"});
+  }
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -184,18 +188,14 @@ angular.module('starter.controllers', [])
         id: $stateParams.transactionId
     }, function(result){
         console.log(result);
-    })
+    });
 })
-
-
 
 .controller('PayoutsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
     $scope.goToPayout = function(payoutId){
         $state.go('app.payout', {payoutId: payoutId});
     }
     $scope.payouts = Payout.query();
-    console.log($scope.payouts);
-
 })
 
 .controller('PayoutCtrl', function($scope, $state, $stateParams, $resource, $location, Transactions, Payout) {

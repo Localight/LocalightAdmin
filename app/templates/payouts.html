@@ -5,8 +5,8 @@
         <li class="item payouts-list" ng-repeat="payout in payouts track by payout._id" ng-click="goToPayout('{{payout._id}}')">
             Locations: <repeated-list ng-repeat="locationPayout in payout.locations">{{locationPayout.location.name}}, </repeated-list> <br />
             Method: {{payout.method}}<br />
-            Created: {{payout.created}}<br />
-            Total Amount: {{payout.amount}}<br />
+            Created: {{formatDate(payout.created)}}<br />
+            Total Amount: ${{payout.amount/100}}<br />
             <chevron class="icon-right ion-chevron-right"></chevron>
         </li>
     </ion-list>
