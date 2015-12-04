@@ -15,7 +15,10 @@ angular.module('starter.controllers', [])
   //Selected items for payouts
   $scope.selectedItems = {};
   $scope.selectedItemsLength = 0;
-  $scope.refreshSelected = function(){
+  $scope.getSelectedItems = function(clear){
+      if(clear){
+          for (var member in $scope.selectedItems) delete $scope.selectedItems[member];
+      }
       $scope.selectedItemsLength = 0;
       var keys = Object.keys($scope.selectedItems);
       for(var i=0;i<keys.length;i++){
@@ -60,15 +63,13 @@ angular.module('starter.controllers', [])
     $scope.getTransactions = function(){
         var unpaid;
         if($scope.filterOptions.unpaid == true) unpaid = "false";
+        $scope.getSelectedItems(true);
         $scope.transactions = Transactions.query({
             paidOut: unpaid,
             created_after: $scope.filterOptions.startDate,
             created_before: $scope.filterOptions.endDate
         });
-
     }
-
-    $scope.getTransactions();
 
     $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
@@ -145,7 +146,10 @@ angular.module('starter.controllers', [])
         for(var i=0;i<$scope.transactions.length;i++){
             $scope.selectedItems[$scope.transactions[i]._id] = true;
         }
-        $scope.refreshSelected();
+        $scope.getSelectedItems();
+     }
+     $scope.isPaid = function(paidOut){
+         return paidOut;
      }
 
      $scope.initiatePayout = function(){
@@ -170,6 +174,9 @@ angular.module('starter.controllers', [])
 
          //Should empty the selected Items array here
      }
+     $scope.goToTransaction = function(transactionId){
+         $state.go('app.transaction', {transactionId: transactionId});
+     }
 })
 
 .controller('TransactionCtrl', function($scope, $stateParams) {
@@ -180,7 +187,6 @@ angular.module('starter.controllers', [])
 
 .controller('PayoutsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
     $scope.goToPayout = function(payoutId){
-        console.log(payoutId);
         $state.go('app.payout', {payoutId: payoutId});
     }
     $scope.payouts = Payout.query();

@@ -26,3 +26,15 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+.checkbox-blue:before {
+    border-color: #387ef5 !important;
+}
+.transactions-li {
+    padding-right: 100px;
+}
+.transactions-button-view {
+    position: absolute;
+    top: calc(50% - 45px/2);
+    right: 10px;
+    z-index: 20;
+}
