@@ -12,14 +12,20 @@
 angular.module('starter.services', ['ngResource'])
   .factory('Transactions', ['$resource', function($resource) {
 
-    return $resource('http://jnode.ngrok.kondeo.com:8080/transactions', {}, {
+    return $resource('http://jnode.ngrok.kondeo.com:8080/transactions/:id', { id: '@id' }, {
         query: {
             method: 'GET',
-            params: {},
+            params: { id: '' },
             isArray: true
+        },
+        get: {
+            method: 'GET',
+            params: { id: '@id' },
+            isArray: false
         }
     });
-  }]).factory('Payout', ['$resource', function($resource) {
+  }])
+  .factory('Payout', ['$resource', function($resource) {
 
     return $resource('http://jnode.ngrok.kondeo.com:8080/transactions/payouts/:id', { id: '@id' }, {
         create: {
