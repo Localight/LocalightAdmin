@@ -148,7 +148,9 @@ angular.module('starter.controllers', [])
 
      $scope.selectAll = function(){
         for(var i=0;i<$scope.transactions.length;i++){
-            $scope.selectedItems[$scope.transactions[i]._id] = true;
+            if(!$scope.transactions[i].paidOut){
+                $scope.selectedItems[$scope.transactions[i]._id] = true;
+            }
         }
         $scope.getSelectedItems();
      }
