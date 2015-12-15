@@ -7,7 +7,6 @@
   </ion-header-bar>
   <ion-content>
     <form ng-submit="doRegister()">
-        {{loggedIn}}
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Name</span>
@@ -26,7 +25,7 @@
           <input type="password" id="confirmInput" ng-model="regData.confirm">
         </label>
         <label class="item item-input">
-          <span class="input-label">SK</span>
+          <span class="input-label" id="kLabel">SK</span>
           <input type="password" ng-model="regData.sk">
         </label>
         <label class="item">

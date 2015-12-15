@@ -44,3 +44,6 @@
     width: 35px;
     vertical-align: middle;
 }
+.error {
+    color: red;
+}

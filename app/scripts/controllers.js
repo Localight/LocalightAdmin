@@ -58,10 +58,14 @@ angular.module('starter.controllers', [])
       if($scope.regData.password === $scope.regData.confirm){
           Accounts.join($scope.regData, function(data){
               localStorage.setItem("token", data.token);
-              $scope.closeLogin();
+              $scope.closeRegister();
           }, function(err){
-              console.log(err);
-              alert("There was an error. Please check the console.");
+              if(err.status == 401){
+                  document.getElementById("kLabel").className += " error";
+              } else {
+                  console.log(err);
+                  alert("There was an error. Please check the console.");
+              }
           });
       } else {
           document.getElementById("confirmInput").value = "";
@@ -92,8 +96,13 @@ angular.module('starter.controllers', [])
         localStorage.setItem("token", data.token);
         $scope.closeLogin();
     }, function(err){
-        console.log(err);
-        alert("There was an error. Please check the console.");
+        if(err.status == 401){
+            document.getElementById("uLabel").className += " error";
+            document.getElementById("pLabel").className += " error";
+        } else {
+            console.log(err);
+            alert("There was an error. Please check the console.");
+        }
     });
   }
 })
