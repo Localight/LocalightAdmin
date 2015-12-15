@@ -55,18 +55,18 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doRegister = function() {
-    Accounts.join({
-        email: $scope.regData.username,
-        password: $scope.regData.password,
-        name: $scope.regData.name,
-        sk: $scope.regData.sk
-    }, function(data){
-        localStorage.setItem("token", data.token);
-        $scope.closeLogin();
-    }, function(err){
-        console.log(err);
-        alert("There was an error. Please check the console.");
-    });
+      if($scope.regData.password === $scope.regData.confirm){
+          Accounts.join($scope.regData, function(data){
+              localStorage.setItem("token", data.token);
+              $scope.closeLogin();
+          }, function(err){
+              console.log(err);
+              alert("There was an error. Please check the console.");
+          });
+      } else {
+          document.getElementById("confirmInput").value = "";
+          document.getElementById("confirmInput").focus();
+      }
   }
 
   // Create the login modal that we will use later
@@ -88,10 +88,7 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    Accounts.login({
-        email: $scope.loginData.username,
-        password: $scope.loginData.password
-    }, function(data){
+    Accounts.login($scope.loginData, function(data){
         localStorage.setItem("token", data.token);
         $scope.closeLogin();
     }, function(err){
