@@ -14,8 +14,6 @@ angular.module('starter.controllers', [])
   // Form data for the register modal
   $scope.regData = {};
 
-  $scope.loggedIn = localStorage.token;
-
   //Selected items for payouts
   $scope.selectedItems = {};
   $scope.selectedItemsLength = 0;
@@ -104,6 +102,15 @@ angular.module('starter.controllers', [])
             alert("There was an error. Please check the console.");
         }
     });
+  }
+
+  if(localStorage.token){
+      $scope.loggedIn = localStorage.token;
+  } else {
+      $scope.loggedIn = false;
+      $timeout(function(){
+          $scope.login();
+      }, 400);
   }
 })
 
