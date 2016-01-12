@@ -1,10 +1,11 @@
-<ion-view view-title="Transactions" ng-init="getTransactions(true)">
+<ion-view view-title="Transactions">
   <ion-content>
     <ion-list>
 
         <li class="item item-checkbox">
             <label class="checkbox">
-                <input type="checkbox" class="checkbox-blue" ng-model="filterOptions.unpaid" ng-click="getTransactions()">
+                <input type="checkbox" class="checkbox-blue"
+                ng-model="filterOptions.unpaid" ng-click="getTransactions()">
             </label>
             Unpaid Transactions Only
         </li>
@@ -17,18 +18,26 @@
                 <a class="button button-positive filterOptions">End Date</a>
             </ionic-datepicker>
 
-            <none class="button button-positive filterOptions" style="border-right: none;" ng-click="selectAll()">Select All</none>
+            <none class="button button-positive filterOptions"
+            style="border-right: none;"
+            ng-click="selectAll()">Select All</none>
         </div>
+                {{selectedItems}}
         {{transactionsFiltered}}
-        <li class="item item-checkbox transactions-li" ng-repeat="transaction in transactions track by transaction._id">
+        <li class="item item-checkbox transactions-li"
+        ng-repeat="transaction in transactions track by transaction._id">
             <label class="checkbox">
-                <input ng-class="transaction.paidOut ? 'checkbox-grey' : 'checkbox-blue'" ng-disabled="transaction.paidOut" type="checkbox" ng-model="selectedItems[transaction._id]" ng-click="getSelectedItems()" />
+                <input ng-class="transaction.paidOut ? 'checkbox-grey' : 'checkbox-blue'"
+                ng-disabled="transaction.paidOut"
+                type="checkbox" ng-model="selectedItems[transaction._id]"
+                ng-click="getSelectedItems()" />
             </label>
             Owner: {{transaction.locationId.ownerId.name}} <br />
             Location: {{transaction.locationId.name}}<br />
             User: {{transaction.userId.name}}<br />
             Amount: ${{transaction.amount/100}}<br />
-            <a class="button button-outline icon-right ion-chevron-right button-positive transactions-button-view" ng-click="goToTransaction(transaction._id)">View</a>
+            <a class="button button-outline icon-right ion-chevron-right button-positive transactions-button-view"
+            ng-click="goToTransaction(transaction._id)">View</a>
 
         </li>
     </ion-list>

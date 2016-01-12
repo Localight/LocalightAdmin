@@ -116,7 +116,10 @@ angular.module('starter.controllers', [])
 
 .controller('TransactionsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
 
+    //Initialization
+
     $scope.filterOptions = {};
+    $scope.transactions = [];
     $scope.getTransactions = function(){
         var unpaid;
         if($scope.filterOptions.unpaid == true) unpaid = "false";
@@ -128,6 +131,8 @@ angular.module('starter.controllers', [])
             sessionToken: $scope.loggedIn
         });
     }
+
+    $scope.getTransactions();
 
     $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
@@ -241,8 +246,7 @@ angular.module('starter.controllers', [])
 
 .controller('TransactionCtrl', function($scope, $stateParams, Transactions) {
     $scope.transaction = Transactions.get({
-        id: $stateParams.transactionId,
-        sessionToken: $scope.loggedIn
+        id: $stateParams.transactionId
     }, function(result){
         console.log(result);
     });
