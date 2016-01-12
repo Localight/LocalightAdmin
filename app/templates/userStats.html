@@ -1,0 +1,11 @@
+<ion-view view-title="User Stats" ng-init="getStats()">
+  <ion-content>
+    <ion-list>
+        <li class="item item-checkbox transactions-li" ng-repeat="user in users track by user._id">
+            Name: {{user.name}} <br />
+            Total Spent: {{user.totalSpent/100}}<br />
+            Email: {{user.email}}<br />
+        </li>
+    </ion-list>
+  </ion-content>
+</ion-view>
