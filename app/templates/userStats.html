@@ -1,10 +1,29 @@
-<ion-view view-title="User Stats" ng-init="getStats()">
+<ion-view view-title="User Stats">
   <ion-content>
+
+      <h3 class = "statsHeader">
+          Start Date - End Date
+      </h3>
+
+      <!-- Graphs -->
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  Gifts Given
+          </div>
+
+          
+
+      </div>
+
+      <!-- Total Amount Of Gifts Purchased -->
+      <h4 class = "statsHeader">
+          Total Amount Purchased on Giftcards: $
+      </h4>
+
     <ion-list>
-        <li class="item item-checkbox transactions-li" ng-repeat="user in users track by user._id">
-            Name: {{user.name}} <br />
-            Total Spent: {{user.totalSpent/100}}<br />
-            Email: {{user.email}}<br />
+        <li class="item item-checkbox transactions-li" ng-repeat="promo in promosCodes track by promo._id"
+        ng-click = "goToPromo(promo._id)">
+            {{promo.keyWord}}
         </li>
     </ion-list>
   </ion-content>

@@ -289,5 +289,44 @@ angular.module('starter.controllers', [])
 })
 
 .controller('UserStatsCtrl', function($scope){
-  
+
+      //Initialization
+      $scope.stats = [];
+      $scope.getStats = function(){
+          //exampleCode
+        //   var unpaid;
+        //   if($scope.filterOptions.unpaid == true) unpaid = "false";
+        //   $scope.getSelectedItems(true);
+        //   $scope.transactions = Transactions.query({
+        //       paidOut: unpaid,
+        //       created_after: $scope.filterOptions.startDate,
+        //       created_before: $scope.filterOptions.endDate,
+        //       sessionToken: $scope.loggedIn
+        //   });
+      }
+      $scope.getStats();
+
+      $scope.promoCodes= [];
+      $scope.getPromos = function(){
+          //exampleCode
+        //   var unpaid;
+        //   if($scope.filterOptions.unpaid == true) unpaid = "false";
+        //   $scope.getSelectedItems(true);
+        //   $scope.transactions = Transactions.query({
+        //       paidOut: unpaid,
+        //       created_after: $scope.filterOptions.startDate,
+        //       created_before: $scope.filterOptions.endDate,
+        //       sessionToken: $scope.loggedIn
+        //   });
+      }
+      $scope.getPromos();
+
+      //Naviagation
+      $scope.goToPromo = function(promoId){
+          $state.go('app.promoStats', {promoId: promoId});
+      }
+
+      $scope.goToUsers = function(){
+          $state.go('app.userStats');
+      }
 });
