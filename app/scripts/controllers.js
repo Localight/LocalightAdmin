@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $window, Accounts) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $window, Accounts) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -40,7 +40,21 @@ angular.module('starter.controllers', [])
       if($scope.regData.password === $scope.regData.confirm){
           Accounts.join($scope.regData, function(data){
               localStorage.setItem("token", data.token);
-              $scope.closeRegister();
+
+              //Show Alert saying sucessful register and reload
+              var alertPopup = $ionicPopup.alert({
+                 title: 'Registration Successful!',
+                 template: 'Successfully registered at ' + $scope.regData.email + '. The app will now refresh...'
+               });
+
+               alertPopup.then(function(res) {
+                 //Close the register and reload
+                 $scope.closeRegister();
+
+                 //Refresh the page since we now have a token.
+                 $window.location.reload(true);
+               });
+
           }, function(err){
               if(err.status == 401){
                   document.getElementById("kLabel").className += " error";
@@ -79,7 +93,7 @@ angular.module('starter.controllers', [])
         $scope.closeLogin();
 
         //Refresh the page since we now have a token.
-        $window.location.reload(true)
+        $window.location.reload(true);
     }, function(err){
         if(err.status == 401){
             document.getElementById("uLabel").className += " error";
