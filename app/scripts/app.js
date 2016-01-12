@@ -85,6 +85,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'PayoutCtrl'
         }
       }
+    })
+    .state('app.userStats', {
+      url: '/users',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/userStats.html',
+          controller: 'UserStatsCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/transactions');

@@ -286,4 +286,8 @@ angular.module('starter.controllers', [])
         }
     });
 
+})
+
+.controller('UserStatsCtrl', function($scope){
+  
 });
