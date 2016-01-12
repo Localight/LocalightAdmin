@@ -11,7 +11,15 @@
                   Gifts Given
           </div>
 
-          
+          <nvd3-line-chart
+                data="exampleData"
+                width="345"
+                height="400"
+                showXAxis="true"
+                showYAxis="true"
+                xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                yAxisTickFormat="yAxisFormatFunction()">
+            </nvd3-line-chart>
 
       </div>
 
@@ -19,6 +27,14 @@
       <h4 class = "statsHeader">
           Total Amount Purchased on Giftcards: $
       </h4>
+
+      <!-- Spacer between the two sections -->
+      <div class = "spacer">
+      </div>
+
+      <div class="item item-divider statsHeader">
+              Promo Codes
+      </div>
 
     <ion-list>
         <li class="item item-checkbox transactions-li" ng-repeat="promo in promosCodes track by promo._id"

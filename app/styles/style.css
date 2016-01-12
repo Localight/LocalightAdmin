@@ -53,3 +53,12 @@
     margin-right: auto;
     text-align: center;
 }
+
+.spacer {
+    height: 20px;
+}
+
+/* For the graphs */
+svg {
+    margin-left: 4px;
+}
