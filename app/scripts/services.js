@@ -12,7 +12,7 @@
 angular.module('starter.services', ['ngResource'])
   .factory('Accounts', ['$resource', function($resource) {
 
-    return $resource('http://jnode.ngrok.kondeo.com:8080/admins/:id', {
+    return $resource('http://dev.localight.com:3001/admins/:id', {
       id: '@id'
     }, {
       join: {
@@ -33,7 +33,7 @@ angular.module('starter.services', ['ngResource'])
   }])
   .factory('Transactions', ['$resource', function($resource) {
 
-    return $resource('http://jnode.ngrok.kondeo.com:8080/transactions/:id', {
+    return $resource('http://dev.localight.com:3001/transactions/:id', {
       id: '@id'
     }, {
       query: {
@@ -54,7 +54,7 @@ angular.module('starter.services', ['ngResource'])
   }])
   .factory('Payout', ['$resource', function($resource) {
 
-    return $resource('http://jnode.ngrok.kondeo.com:8080/transactions/payouts/:id', {
+    return $resource('http://dev.localight.com:3001/transactions/payouts/:id', {
       id: '@id'
     }, {
       create: {
