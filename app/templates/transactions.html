@@ -22,15 +22,15 @@
             style="border-right: none;"
             ng-click="selectAll()">Select All</none>
         </div>
-                {{selectedItems}}
-        {{transactionsFiltered}}
+
         <li class="item item-checkbox transactions-li"
         ng-repeat="transaction in transactions track by transaction._id">
             <label class="checkbox">
                 <input ng-class="transaction.paidOut ? 'checkbox-grey' : 'checkbox-blue'"
                 ng-disabled="transaction.paidOut"
-                type="checkbox" ng-model="selectedItems[transaction._id]"
-                ng-click="getSelectedItems()" />
+                type="checkbox"
+                ng-model="selectedItems[transaction._id]"
+                ng-click="getSelectedItems();" />
             </label>
             Owner: {{transaction.locationId.ownerId.name}} <br />
             Location: {{transaction.locationId.name}}<br />
@@ -41,5 +41,25 @@
 
         </li>
     </ion-list>
+
+    <!-- End Of List -->
+    <h4 class = "transactionListEnd">
+        End of List...
+    </h4>
+
+    <!-- Spacer for the payout bar -->
+    <div class = "payoutSpacer"
+    ng-if="selectedItemsLength > 0">
+    </div>
+
   </ion-content>
+
+  <div class="bar bar-footer bar-positive slideInUp animated payoutBar"
+  ng-if="selectedItemsLength > 0"
+  ng-click="initiatePayout()">
+      <button class="button button-clear button-light payoutButton">
+          Payout {{selectedItemsLength}} Item<if ng-if="selectedItemsLength > 1">s</if>
+      </button>
+  </div>
+
 </ion-view>

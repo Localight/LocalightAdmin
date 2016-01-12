@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, Accounts) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $window, Accounts) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -13,22 +13,6 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
   // Form data for the register modal
   $scope.regData = {};
-
-  //Selected items for payouts
-  $scope.selectedItems = {};
-  $scope.selectedItemsLength = 0;
-  $scope.getSelectedItems = function(clear){
-      if(clear){
-          for (var member in $scope.selectedItems) delete $scope.selectedItems[member];
-      }
-      $scope.selectedItemsLength = 0;
-      var keys = Object.keys($scope.selectedItems);
-      for(var i=0;i<keys.length;i++){
-          if($scope.selectedItems[keys[i]]){
-              $scope.selectedItemsLength++;
-          }
-      }
-  }
 
   $scope.formatDate = function(date){
       return new Date(date).toDateString("en-us", {year: "numeric", month: "short", day: "numeric"});
@@ -93,6 +77,9 @@ angular.module('starter.controllers', [])
     Accounts.login($scope.loginData, function(data){
         localStorage.setItem("token", data.token);
         $scope.closeLogin();
+
+        //Refresh the page since we now have a token.
+        $window.location.reload(true)
     }, function(err){
         if(err.status == 401){
             document.getElementById("uLabel").className += " error";
@@ -114,9 +101,27 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('TransactionsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
+.controller('TransactionsCtrl', function($scope, $state, $resource,
+    $location, $timeout, Transactions, Payout) {
 
     //Initialization
+
+    //Selected items for payouts
+    $scope.selectedItems = {};
+    $scope.selectedItemsLength = 0;
+    $scope.getSelectedItems = function(clear){
+
+        if(clear){
+            for (var member in $scope.selectedItems) delete $scope.selectedItems[member];
+        }
+        $scope.selectedItemsLength = 0;
+        var keys = Object.keys($scope.selectedItems);
+        for(var i=0;i<keys.length;i++){
+            if($scope.selectedItems[keys[i]]){
+                $scope.selectedItemsLength++;
+            }
+        }
+    }
 
     $scope.filterOptions = {};
     $scope.transactions = [];
@@ -131,8 +136,8 @@ angular.module('starter.controllers', [])
             sessionToken: $scope.loggedIn
         });
     }
-
     $scope.getTransactions();
+
 
     $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
@@ -227,11 +232,11 @@ angular.module('starter.controllers', [])
 
          var payload = {
              transactions: payout,
-             method: "check"
+             method: "check",
+             sessionToken: $scope.loggedIn
          }
 
         Payout.create(payload, function(payout){
-            console.log(payout);
             $state.go('app.payout', {payoutId: payout._id});
         }, function(err){
             //Error
@@ -246,7 +251,8 @@ angular.module('starter.controllers', [])
 
 .controller('TransactionCtrl', function($scope, $stateParams, Transactions) {
     $scope.transaction = Transactions.get({
-        id: $stateParams.transactionId
+        id: $stateParams.transactionId,
+        sessionToken: $scope.loggedIn
     }, function(result){
         console.log(result);
     });
@@ -271,7 +277,8 @@ angular.module('starter.controllers', [])
         return group.show;
     };
     $scope.payout = Payout.get({
-        id: $stateParams.payoutId
+        id: $stateParams.payoutId,
+        sessionToken: $scope.loggedIn
     }, function(payout){
         for (var i=0; i<payout.locations.length; i++) {
             $scope.groups[i] = {
