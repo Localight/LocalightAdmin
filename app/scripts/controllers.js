@@ -124,7 +124,8 @@ angular.module('starter.controllers', [])
         $scope.transactions = Transactions.query({
             paidOut: unpaid,
             created_after: $scope.filterOptions.startDate,
-            created_before: $scope.filterOptions.endDate
+            created_before: $scope.filterOptions.endDate,
+            sessionToken: $scope.loggedIn
         });
     }
 
@@ -240,7 +241,8 @@ angular.module('starter.controllers', [])
 
 .controller('TransactionCtrl', function($scope, $stateParams, Transactions) {
     $scope.transaction = Transactions.get({
-        id: $stateParams.transactionId
+        id: $stateParams.transactionId,
+        sessionToken: $scope.loggedIn
     }, function(result){
         console.log(result);
     });
