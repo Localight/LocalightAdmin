@@ -1,0 +1,32 @@
+<ion-view view-title="Payout Details">
+  <ion-content>
+      <div class="card">
+        <div class="item item-text-wrap">
+            Method: {{payout.method}}<br />
+            Created: {{formatDate(payout.created)}}<br />
+            Total Amount: ${{payout.amount/100}}<br /><br />
+            Locations included in this payout:
+        </div>
+
+
+        <ion-list>
+          <div ng-repeat="group in groups">
+            <ion-item class="item-stable droplist"
+                      ng-click="toggleGroup(group)"
+                      ng-class="{active: isGroupShown(group)}">
+                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+              &nbsp;
+              {{group.name}}
+            </ion-item>
+            <ion-item class="item-accordion droplist-item"
+                      ng-repeat="item in group.items"
+                      ng-show="isGroupShown(group)"
+                      ng-click="goToTransaction('{{item.id}}')">
+              {{item.title}} <chevron class="icon-right ion-chevron-right"></chevron>
+            </ion-item>
+          </div>
+        </ion-list>
+
+      </div>
+  </ion-content>
+</ion-view>
