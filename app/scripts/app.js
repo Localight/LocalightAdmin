@@ -96,6 +96,33 @@ angular.module('starter', ['ionic', 'starter.controllers',
           controller: 'UserStatsCtrl'
         }
       }
+    })
+    .state('app.recentUsers', {
+      url: '/users/recent',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/recentUsers.html',
+          controller: 'RecentUsersCtrl'
+        }
+      }
+    })
+    .state('app.userById', {
+      url: '/users/recent/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/userById.html',
+          controller: 'UserByIdCtrl'
+        }
+      }
+    })
+    .state('app.promoCodes', {
+      url: '/promo/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/promoCodes.html',
+          controller: 'PromoCodesCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/transactions');
