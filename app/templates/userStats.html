@@ -11,15 +11,58 @@
                   Gifts Given
           </div>
 
-          <nvd3-line-chart
-                data="exampleData"
-                width="345"
-                height="400"
-                showXAxis="true"
-                showYAxis="true"
-                xAxisTickFormat="xAxisTickFormat_Date_Format()"
-                yAxisTickFormat="yAxisFormatFunction()">
-            </nvd3-line-chart>
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="giftsGiven"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
+
+      </div>
+
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  Gifts Used
+          </div>
+
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="giftsUsed"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
+
+      </div>
+
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  New Users
+          </div>
+
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="newUsers"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
 
       </div>
 

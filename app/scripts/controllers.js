@@ -288,7 +288,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('UserStatsCtrl', function($scope){
+.controller('UserStatsCtrl', function($scope, Promos){
 
       //Initialization
       $scope.stats = [];
@@ -308,16 +308,19 @@ angular.module('starter.controllers', [])
 
       $scope.promoCodes= [];
       $scope.getPromos = function(){
-          //exampleCode
-        //   var unpaid;
-        //   if($scope.filterOptions.unpaid == true) unpaid = "false";
-        //   $scope.getSelectedItems(true);
-        //   $scope.transactions = Transactions.query({
-        //       paidOut: unpaid,
-        //       created_after: $scope.filterOptions.startDate,
-        //       created_before: $scope.filterOptions.endDate,
-        //       sessionToken: $scope.loggedIn
-        //   });
+
+          //Create our payload to query our promo codes
+          var payload = {
+              sessionToken: $scope.loggedIn
+          };
+
+          Promos.query(payload, function() {
+
+          },
+          //Error
+          function() {
+              
+          })
       }
       $scope.getPromos();
 
