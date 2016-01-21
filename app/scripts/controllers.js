@@ -288,7 +288,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('UserStatsCtrl', function($scope, Promos){
+.controller('UserStatsCtrl', function($scope, $state, Promos){
 
       //Initialization
       $scope.stats = [];
@@ -306,7 +306,7 @@ angular.module('starter.controllers', [])
       }
       $scope.getStats();
 
-      $scope.promoCodes= [];
+      $scope.promoCodes = [];
       $scope.getPromos = function(){
 
           //Create our payload to query our promo codes
@@ -314,12 +314,17 @@ angular.module('starter.controllers', [])
               sessionToken: $scope.loggedIn
           };
 
-          Promos.query(payload, function() {
+          Promos.query(payload, function(response) {
+
+              //Success!
+              //Set the promocodes to the response
+              $scope.promoCodes = response;
 
           },
+
           //Error
-          function() {
-              
+          function(response) {
+              //Use error service here
           })
       }
       $scope.getPromos();
@@ -354,6 +359,17 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PromoCodesCtrl', function($scope) {
+
+
+
+})
+
+.controller('PromoCodesCtrl', function($scope) {
+
+    //Simply send a new promo code
+    $scope.createPromo = function() {
+        
+    }
 
 
 

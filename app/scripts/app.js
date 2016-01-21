@@ -123,6 +123,15 @@ angular.module('starter', ['ionic', 'starter.controllers',
           controller: 'PromoCodesCtrl'
         }
       }
+    })
+    .state('app.createPromo', {
+      url: '/promo/create',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/createPromo.html',
+          controller: 'CreatePromoCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/transactions');

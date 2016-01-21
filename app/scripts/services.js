@@ -103,7 +103,7 @@ angular.module('starter.services', ['ngResource'])
   }])
   .factory('Promos', ['$resource', function($resource) {
 
-    return $resource('http://dev.localight.com:3001/promocodes/:id', {
+    return $resource('http://dev.localight.com:3001/admins/promocodes/:id', {
       id: '@id'
     }, {
       query: {

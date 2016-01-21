@@ -66,3 +66,10 @@
     height: 400px;
     width: auto;
 }
+
+.newPromo {
+    color: #387ef5 !important;
+    font-weight: bold !important;
+    text-align: center;
+    background-color: #f8f8f8 !important;
+}

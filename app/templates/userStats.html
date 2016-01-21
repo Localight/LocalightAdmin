@@ -80,9 +80,13 @@
       </div>
 
     <ion-list>
-        <li class="item item-checkbox transactions-li" ng-repeat="promo in promosCodes track by promo._id"
+        <li class="item newPromo"
         ng-click = "goToPromo(promo._id)">
-            {{promo.keyWord}}
+            Create a New Promo Code
+        </li>
+        <li class="item" ng-repeat="promo in promoCodes track by promo._id"
+        ng-click = "goToPromo(promo._id)">
+            {{promo.keyword}}
         </li>
     </ion-list>
   </ion-content>

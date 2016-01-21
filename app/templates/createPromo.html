@@ -1,0 +1,44 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Create Promo</h1>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="createPromo()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Keyword (Name)</span>
+          <input type="text"
+          placeholder="Promo Code"
+          ng-model="formData.keyword">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Amount (Dollars, No Cents)</span>
+          <input type="number"
+          placeholder="5"
+          max="500"
+          min="1"
+          ng-model="formData.amount">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Gift Message</span>
+          <textarea id="passwordInput"
+          maxlength = "100"
+          minlength = "1"
+          placeholder="Enter Message Here"
+          ng-model="formData.message"></textarea>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Confirm</span>
+          <input type="password" id="confirmInput" ng-model="regData.confirm">
+        </label>
+        <label class="item item-input">
+          <span class="input-label" id="kLabel">SK</span>
+          <input type="password" ng-model="regData.sk">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Create Promo</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
