@@ -10,7 +10,7 @@
 
 angular.module('starter')
 
-.service('alertHandler', function($ionicPopup, $ionicModal, loadingSpinner, $scope) {
+.service('alertHandler', function($ionicPopup, $ionicModal, loadingSpinner) {
 
     //Function to create an alert
     function createAlert(aTitle, aText, callback) {
@@ -30,9 +30,7 @@ angular.module('starter')
        //Our login modal
        // Create the login modal that we will use later
        var loginModal = $ionicModal.fromTemplateUrl('templates/login.html', {
-         scope: $scope
        }).then(function(modal) {
-         $scope.modal = modal;
        });
 
     return {

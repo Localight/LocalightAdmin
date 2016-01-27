@@ -1,6 +1,8 @@
 angular.module('starter')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, Accounts) {
+.controller('AppCtrl', function($scope, $ionicModal,
+    $timeout, Accounts, loadingSpinner, alertHandler,
+    $window) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -53,17 +55,35 @@ angular.module('starter')
 
   // Perform the login action when the user submits the login form
   $scope.doRegister = function() {
+
+      //Start loading
+      loadingSpinner.startLoading();
+
       if($scope.regData.password === $scope.regData.confirm){
           Accounts.join($scope.regData, function(data){
               localStorage.setItem("token", data.token);
-              $scope.closeRegister();
-          }, function(err){
-              if(err.status == 401){
-                  document.getElementById("kLabel").className += " error";
-              } else {
-                  console.log(err);
-                  alert("There was an error. Please check the console.");
-              }
+
+
+              //Alert the user the page will refresh
+              alertHandler.showAlert("Registration Success!",
+              "Thank you for joining Localight! The app will now refresh...",
+              function() {
+                  $window.location.reload();
+              })
+          }, function(err) {
+
+              //Show the error
+              alertHandler.showError(err, [
+                  {
+                      status: 401,
+                      title: "Wrong Secret Key",
+                      text: "Your secret key is invalid, please contact an administrator and try again",
+                      callback: function() {
+                          document.getElementById("kLabel").className += " error";
+                      }
+
+                  }
+              ]);
           });
       } else {
           document.getElementById("confirmInput").value = "";
@@ -90,17 +110,35 @@ angular.module('starter')
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
+
+      //Start loading
+      loadingSpinner.startLoading();
+
     Accounts.login($scope.loginData, function(data){
         localStorage.setItem("token", data.token);
-        $scope.closeLogin();
+
+
+        //Alert the user the page will refresh
+        alertHandler.showAlert("Login Success!",
+        "The app will now refresh...",
+        function() {
+            $window.location.reload();
+        })
     }, function(err){
-        if(err.status == 401){
-            document.getElementById("uLabel").className += " error";
-            document.getElementById("pLabel").className += " error";
-        } else {
-            console.log(err);
-            alert("There was an error. Please check the console.");
-        }
+
+        //Show the error
+        alertHandler.showError(err, [
+            {
+                status: 401,
+                title: "Login Failed",
+                text: "Please check your username and password!",
+                callback: function() {
+                    document.getElementById("uLabel").className += " error";
+                    document.getElementById("pLabel").className += " error";
+                }
+
+            }
+        ]);
     });
   }
 
