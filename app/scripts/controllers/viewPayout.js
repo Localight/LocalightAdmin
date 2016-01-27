@@ -12,7 +12,8 @@ angular.module('starter')
         return group.show;
     };
     $scope.payout = Payout.get({
-        id: $stateParams.payoutId
+        id: $stateParams.payoutId,
+        sessionToken: localStorage.getItem("token")
     }, function(payout){
         for (var i=0; i<payout.locations.length; i++) {
             $scope.groups[i] = {
