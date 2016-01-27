@@ -1,12 +1,20 @@
 // Ionic Starter App
 
+//Define our controllers, services, and filters modules
+//Couldn't figure this out, doing it the angular way, and
+//simply adding everything to starter
+// angular.module('starter.controllers', []);
+// angular.module('starter.services', ['ngResource']);
+// angular.module('starter.filters', []);
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers',
-'starter.services', 'starter.filters', 'ionic-datepicker',
-'nvd3ChartDirectives'])
+angular.module('starter', ['ionic',
+'ionic-datepicker',
+'nvd3ChartDirectives',
+'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers',
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/modals/menu.html',
     controller: 'AppCtrl'
   })
 
