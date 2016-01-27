@@ -27,6 +27,13 @@ angular.module('starter')
           id: '@id'
         },
         isArray: false
-      }
+    },
+    create: {
+      method: 'POST',
+      params: {
+        id: ''
+      },
+      isArray: false
+    },
     });
   }])

@@ -1,39 +1,88 @@
 <ion-view view-title="Create Promo">
   <ion-content>
-    <form ng-submit="createPromo()">
+    <form>
+
+    <h5 class = "center">If form is disabled, you messed up, needs a little more work, but ran out of time</h5>
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Keyword (Name)</span>
+          <span class="input-label">Keyword <br >(Name, and no spaces)</span>
           <input type="text"
-          placeholder="Promo Code"
-          ng-model="formData.keyword">
+          ng-keydown="ignoreSpace($event)"
+          placeholder="PromoCode"
+          ng-model="formData.keyword" />
         </label>
         <label class="item item-input">
-          <span class="input-label">Amount (Dollars, No Cents)</span>
+          <span class="input-label">Amount <br />(Dollars, No Cents,<br /> Max: 50000)</span>
           <input type="number"
-          placeholder="5"
-          max="500"
-          min="1"
-          ng-model="formData.amount">
+          placeholder="500 = $5"
+          ng-max="50000"
+          ng-min="1"
+          ng-model="formData.amount" />
         </label>
         <label class="item item-input">
-          <span class="input-label">Giftcard Message</span>
+          <span class="input-label smallLabel">Giftcard Message
+          <br />
+          Char Count (Max: 160):
+          <br />
+          {{formData.message.length}}
+          </span>
           <textarea id="passwordInput"
-          maxlength = "100"
-          minlength = "1"
+          ng-maxlength = "160"
+          ng-minlength = "1"
+          class = "promoMessage"
           placeholder="Enter Message Here"
           ng-model="formData.message"></textarea>
         </label>
         <label class="item item-input">
-          <span class="input-label">Confirm</span>
-          <input type="password" id="confirmInput" ng-model="regData.confirm">
+          <span class="input-label smallLabel">SMS Message
+          <br />
+          Char Count (Max: 120):
+          <br />
+          {{formData.sms.length}}
+          </span>
+          <textarea id="passwordInput"
+          ng-maxlength = "160"
+          ng-minlength = "1"
+          class = "promoMessage"
+          placeholder="Enter SMS Here"
+          ng-model="formData.sms"></textarea>
         </label>
         <label class="item item-input">
-          <span class="input-label" id="kLabel">SK</span>
-          <input type="password" ng-model="regData.sk">
+          <span class="input-label">Sender Name</span>
+          <input type="text"
+          placeholder="From Name on Giftcard"
+          ng-model="formData.sender" />
         </label>
+        <label class="item item-input">
+          <span class="input-label smallLabel">From Phone</span>
+          <input type="number"
+          ng-max="9999999"
+          ng-min="1111111"
+          placeholder="7 digits, no special characters"
+          ng-model="formData.phone" />
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Location Code</span>
+          <input type="number"
+          ng-max="99999"
+          ng-min="10000"
+          placeholder="e.g 10000 for MADE in Long Beach"
+          ng-model="formData.location" />
+        </label>
+
+
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Create Promo</button>
+          <button class="button button-block button-positive"
+          type="submit"
+          ng-click = "createPromo()"
+          ng-disabled = "!(formData.keyword &&
+          validNumber(formData.amount, 50000, 1) &&
+          validNumber(formData.message.length, 160, 1) &&
+          validNumber(formData.sms.length, 120, 1) &&
+          formData.sender &&
+          validNumber(formData.location, 99999, 10000) &&
+          validNumber(formData.phone, 9999999, 1111111))">Create Promo</button>
         </label>
       </div>
     </form>

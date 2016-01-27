@@ -1,4 +1,19 @@
 /* Empty. Add your own CSS if you like */
+.smallLabel {
+    font-size: 13px !important;
+}
+
+.promoMessage {
+    width: 175px !important;
+    height: 150px !important;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .filterOptions {
     border-radius: 0px;
 }

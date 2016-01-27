@@ -99,6 +99,7 @@ angular.module('starter', ['ionic',
     })
     .state('app.userStats', {
       url: '/users',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/userStats.html',
