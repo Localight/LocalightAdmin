@@ -33,6 +33,10 @@ angular.module('starter')
           Promos.query(payload, function(response) {
 
               //Success!
+
+              //Stop loading, if we are loading
+              loadingSpinner.stopLoading();
+              
               //Set the promocodes to the response
               $scope.promoCodes = response;
 

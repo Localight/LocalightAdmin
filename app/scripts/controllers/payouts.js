@@ -23,6 +23,9 @@ angular.module('starter')
 
             //Success!
 
+            //Stop loading, if we are loading
+            loadingSpinner.stopLoading();
+
             //Set the payouts to scope
             $scope.payouts = response;
         },

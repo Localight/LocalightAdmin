@@ -21,6 +21,10 @@ angular.module('starter')
         id: $stateParams.payoutId,
         sessionToken: localStorage.getItem("token")
     }, function(payout){
+
+        //Stop loading, if we are loading
+        loadingSpinner.stopLoading();
+        
         for (var i=0; i<payout.locations.length; i++) {
             $scope.groups[i] = {
                 name: payout.locations[i].location.name + " - $" + payout.locations[i].amount,

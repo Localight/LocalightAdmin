@@ -11,6 +11,9 @@ angular.module('starter')
         sessionToken: $scope.loggedIn
     }, function(result){
         //console.log(result);
+
+        //Stop loading, if we are loading
+        loadingSpinner.stopLoading();
     },
     //Error
     function(response) {

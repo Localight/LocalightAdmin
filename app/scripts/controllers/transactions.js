@@ -41,6 +41,9 @@ angular.module('starter')
         //Success
         function(response) {
 
+            //Stop loading, if we are loading
+            loadingSpinner.stopLoading();
+
         },
         //Error
         function(response) {
@@ -152,6 +155,10 @@ angular.module('starter')
          }
 
         Payout.create(payload, function(payout){
+
+            //Stop loading, if we are loading
+            loadingSpinner.stopLoading();
+            
             $state.go('app.payout', {payoutId: payout._id});
         }, function(err){
             //Error

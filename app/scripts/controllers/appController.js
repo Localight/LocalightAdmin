@@ -61,6 +61,11 @@ angular.module('starter')
 
       if($scope.regData.password === $scope.regData.confirm){
           Accounts.join($scope.regData, function(data){
+
+              //Stop loading, if we are loading
+              loadingSpinner.stopLoading();
+
+              
               localStorage.setItem("token", data.token);
 
 
@@ -115,6 +120,11 @@ angular.module('starter')
       loadingSpinner.startLoading();
 
     Accounts.login($scope.loginData, function(data){
+
+        //Stop loading, if we are loading
+        loadingSpinner.stopLoading();
+
+
         localStorage.setItem("token", data.token);
 
 
