@@ -10,6 +10,9 @@ angular.module('starter')
     //Initilaization function
     $scope.initPayouts = function() {
 
+        //Start loading
+        loadingSpinner.startLoading();
+
         //Add our sessiont token payload
         var payload = {
             sessionToken: localStorage.getItem("token")

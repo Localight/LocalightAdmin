@@ -27,12 +27,6 @@ angular.module('starter')
            //May have to return the alert
        }
 
-       //Our login modal
-       // Create the login modal that we will use later
-       var loginModal = $ionicModal.fromTemplateUrl('templates/modals/login.html', {
-       }).then(function(modal) {
-       });
-
     return {
 
         //Have an alert specifically for errors, and general alerts
@@ -62,16 +56,18 @@ angular.module('starter')
 
             //Search through our response handlers if we got a specific
             //error we wanted to Handle
-            for(var i = 0; i < responseHandlers.length; i++) {
+            if(responseHandlers) {
+                for(var i = 0; i < responseHandlers.length; i++) {
 
-                //Check if our response Handler is for our status
-                if(error.status == responseHandlers[i].status) {
+                    //Check if our response Handler is for our status
+                    if(error.status == responseHandlers[i].status) {
 
-                    //Make the handled status this status
-                    handledStatus = error.status;
+                        //Make the handled status this status
+                        handledStatus = error.status;
 
-                    //Create the alert
-                    createAlert(responseHandlers[i].title, responseHandlers[i].text, responseHandlers[i].callback())
+                        //Create the alert
+                        createAlert(responseHandlers[i].title, responseHandlers[i].text, responseHandlers[i].callback())
+                    }
                 }
             }
 
@@ -79,11 +75,8 @@ angular.module('starter')
             //Go through default error handling
             if(handledStatus == -1) {
 
-                if (response.status == 401) {
+                if (error.status == 401) {
                    //Handle 401 error code
-
-                   //Pull up the login modal
-                   loginModal.show();
 
                    //Delete the token
                    localStorage.removeItem("token");
@@ -91,7 +84,7 @@ angular.module('starter')
                    //Show an error
                    createAlert("Session Error", "Session Token not found or invalidated, please log in!");
                }
-               else if (response.status == 404) {
+               else if (error.status == 404) {
                  // Handle 404 error code
 
                  //Delete the token
@@ -100,7 +93,7 @@ angular.module('starter')
                  //Show an error
                  createAlert("No Connection!", "Internet Connection is required to use this app. Please connect to the internet with your device, and restart the app!");
                }
-               else if (response.status == 500) {
+               else if (error.status == 500) {
                  // Handle 500 error code
 
                  //Show an error
@@ -111,7 +104,7 @@ angular.module('starter')
 
                    //An unexpected error has occured, log into console
                    //Show an error
-                   createAlert("Error: " + response.status, "Unexpected Error. Please try re-opening the app, or try again later!");
+                   createAlert("Error: " + error.status, "Unexpected Error. Please try re-opening the app, or try again later!");
                }
             }
         }

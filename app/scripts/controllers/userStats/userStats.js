@@ -1,6 +1,7 @@
 angular.module('starter')
 
-.controller('UserStatsCtrl', function($scope, $state, Promos){
+.controller('UserStatsCtrl', function($scope,
+    $state, Promos, loadingSpinner, alertHandler){
 
       //Initialization
       $scope.stats = [];
@@ -21,6 +22,9 @@ angular.module('starter')
       $scope.promoCodes = [];
       $scope.getPromos = function(){
 
+          //Start loading
+          loadingSpinner.startLoading();
+
           //Create our payload to query our promo codes
           var payload = {
               sessionToken: $scope.loggedIn
@@ -37,6 +41,7 @@ angular.module('starter')
           //Error
           function(response) {
               //Use error service here
+              alertHandler.showError(response);
           })
       }
       $scope.getPromos();

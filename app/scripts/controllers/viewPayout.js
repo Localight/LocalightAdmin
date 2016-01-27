@@ -1,6 +1,8 @@
 angular.module('starter')
 
-.controller('PayoutCtrl', function($scope, $state, $stateParams, $resource, $location, Transactions, Payout) {
+.controller('PayoutCtrl', function($scope, $state, $stateParams,
+    $resource, $location, Transactions, Payout,
+    loadingSpinner, alertHandler) {
     $scope.goToTransaction = function(transactionId){
         $state.go('app.transaction', {transactionId: transactionId});
     }
@@ -11,6 +13,10 @@ angular.module('starter')
     $scope.isGroupShown = function(group) {
         return group.show;
     };
+
+    //Start loading
+    loadingSpinner.startLoading();
+
     $scope.payout = Payout.get({
         id: $stateParams.payoutId,
         sessionToken: localStorage.getItem("token")
@@ -30,6 +36,10 @@ angular.module('starter')
                 }
             }
         }
+    },
+    //error
+    function(response) {
+        alertHandler.showError(response);
     });
 
 });

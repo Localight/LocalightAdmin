@@ -119,7 +119,6 @@
     width: 100%;
     z-index: 13 !important;
 
-    //Ionic dark alpha
     background-color: rgba(48, 48, 48, .45);
 }
 
@@ -135,7 +134,7 @@
     left: calc(50% - 45%);
     z-index: 14 !important;
 
-    //Ionic stable alpha
+
     background-color: rgba(248, 248, 248, .85);
     border-radius: 5px;
     padding: 10px;

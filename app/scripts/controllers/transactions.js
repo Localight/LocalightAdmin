@@ -1,6 +1,7 @@
 angular.module('starter')
 
-.controller('TransactionsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
+.controller('TransactionsCtrl', function($scope, $state, $resource, $location,
+    Transactions, Payout, loadingSpinner, alertHandler) {
 
     //Initialization
 
@@ -24,6 +25,10 @@ angular.module('starter')
     $scope.filterOptions = {};
     $scope.transactions = [];
     $scope.getTransactions = function(){
+
+        //Start loading
+        loadingSpinner.startLoading();
+
         var unpaid;
         if($scope.filterOptions.unpaid == true) unpaid = "false";
         $scope.getSelectedItems(true);
@@ -32,6 +37,14 @@ angular.module('starter')
             created_after: $scope.filterOptions.startDate,
             created_before: $scope.filterOptions.endDate,
             sessionToken: $scope.loggedIn
+        },
+        //Success
+        function(response) {
+
+        },
+        //Error
+        function(response) {
+            alertHandler.showError(response);
         });
     }
     $scope.getTransactions();
@@ -121,6 +134,10 @@ angular.module('starter')
      }
 
      $scope.initiatePayout = function(){
+
+         //Start loading
+         loadingSpinner.startLoading();
+
          var payout = [];
          for(var i=0;i<$scope.transactions.length;i++){
              if($scope.selectedItems[$scope.transactions[i]._id]){
@@ -138,6 +155,7 @@ angular.module('starter')
             $state.go('app.payout', {payoutId: payout._id});
         }, function(err){
             //Error
+            alertHandler.showError(err);
         });
 
          //Should empty the selected Items array here
