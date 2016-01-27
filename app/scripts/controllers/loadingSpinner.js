@@ -1,5 +1,7 @@
 angular.module('starter')
 
-.controller('LoadingSpinnerCtrl', function($scope, $stateParams, loadingSpinner) {
+.controller('SpinnerCtrl', function($scope, $stateParams, loadingSpinner) {
 
+    //Initialize our loading spinner
+    $scope.loading = loadingSpinner;
 });
