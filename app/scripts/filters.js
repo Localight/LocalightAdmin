@@ -9,7 +9,7 @@
  */
 
 //Get all the giftcards, or create one
-angular.module('starter.filters', [])
+angular.module('starter')
 .filter('transactionsByOption', function () {
     return function (transactions, options) {
         var items = {

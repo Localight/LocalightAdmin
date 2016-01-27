@@ -1,0 +1,15 @@
+<ion-view view-title="Recent Users">
+  <ion-content>
+    <ion-list>
+        <li class="item item-checkbox transactions-li"
+        ng-repeat="transaction in transactions track by transaction._id"
+        ng-click="goToTransaction(transaction._id)">
+            Owner: {{transaction.locationId.ownerId.name}} <br />
+            Location: {{transaction.locationId.name}}<br />
+            User: {{transaction.userId.name}}<br />
+            Amount: ${{transaction.amount/100}}<br />
+
+        </li>
+    </ion-list>
+  </ion-content>
+</ion-view>

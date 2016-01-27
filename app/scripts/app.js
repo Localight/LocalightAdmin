@@ -1,10 +1,20 @@
 // Ionic Starter App
 
+//Define our controllers, services, and filters modules
+//Couldn't figure this out, doing it the angular way, and
+//simply adding everything to starter
+// angular.module('starter.controllers', []);
+// angular.module('starter.services', ['ngResource']);
+// angular.module('starter.filters', []);
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.filters', 'ionic-datepicker'])
+angular.module('starter', ['ionic',
+'ionic-datepicker',
+'nvd3ChartDirectives',
+'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/modals/menu.html',
     controller: 'AppCtrl'
   })
 
@@ -84,6 +94,51 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         'menuContent': {
           templateUrl: 'templates/payout.html',
           controller: 'PayoutCtrl'
+        }
+      }
+    })
+    .state('app.userStats', {
+      url: '/users',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/userStats.html',
+          controller: 'UserStatsCtrl'
+        }
+      }
+    })
+    .state('app.recentUsers', {
+      url: '/users/recent',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/recentUsers.html',
+          controller: 'RecentUsersCtrl'
+        }
+      }
+    })
+    .state('app.userById', {
+      url: '/users/recent/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/userById.html',
+          controller: 'UserByIdCtrl'
+        }
+      }
+    })
+    .state('app.promoCodes', {
+      url: '/promo/view/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/promoCodes.html',
+          controller: 'PromoCodesCtrl'
+        }
+      }
+    })
+    .state('app.createPromo', {
+      url: '/promo/create',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/createPromo.html',
+          controller: 'CreatePromoCtrl'
         }
       }
     });

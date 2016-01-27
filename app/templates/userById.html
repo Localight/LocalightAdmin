@@ -1,0 +1,14 @@
+<ion-view view-title="User Details">
+  <ion-content>
+      <div class="card">
+        <div class="item item-text-wrap">
+            Owner: {{transaction.locationId.ownerId.name}} <br />
+            Location: {{transaction.locationId.name}}, {{transaction.locationId.address1}}<br />
+            User: {{transaction.userId.name}}, {{transaction.userId.phone}}<br />
+            Amount: ${{transaction.amount/100}}<br />
+            Created: {{formatDate(transaction.created)}}<br />
+            Errors: <if ng-if="!(transaction.errors.length > 0)">None</if>{{transaction.errors}}<br />
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

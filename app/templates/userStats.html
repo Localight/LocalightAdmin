@@ -1,0 +1,93 @@
+<ion-view view-title="User Stats">
+  <ion-content>
+
+      <h3 class = "statsHeader">
+          Start Date - End Date
+      </h3>
+
+      <!-- Graphs -->
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  Gifts Given
+          </div>
+
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="giftsGiven"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
+
+      </div>
+
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  Gifts Used
+          </div>
+
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="giftsUsed"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
+
+      </div>
+
+      <div class = "card">
+          <div class="item item-divider statsHeader">
+                  New Users
+          </div>
+
+
+          <div class = "chartContainer">
+              <nvd3-line-chart
+                    data="exampleData"
+                    id="newUsers"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                    yAxisTickFormat="yAxisFormatFunction()">
+                    <svg></svg>
+                </nvd3-line-chart>
+            </div>
+
+      </div>
+
+      <!-- Total Amount Of Gifts Purchased -->
+      <h4 class = "statsHeader">
+          Total Amount Purchased on Giftcards: $
+      </h4>
+
+      <!-- Spacer between the two sections -->
+      <div class = "spacer">
+      </div>
+
+      <div class="item item-divider statsHeader">
+              Promo Codes
+      </div>
+
+    <ion-list>
+        <li class="item newPromo"
+        ng-click = "createPromo()">
+            Create a New Promo Code
+        </li>
+        <li class="item" ng-repeat="promo in promoCodes track by promo._id"
+        ng-click = "goToPromo(promo._id)">
+            {{promo.keyword}}
+        </li>
+    </ion-list>
+  </ion-content>
+</ion-view>
