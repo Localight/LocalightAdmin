@@ -29,7 +29,7 @@ angular.module('starter')
 
        //Our login modal
        // Create the login modal that we will use later
-       var loginModal = $ionicModal.fromTemplateUrl('templates/login.html', {
+       var loginModal = $ionicModal.fromTemplateUrl('templates/modals/login.html', {
        }).then(function(modal) {
        });
 
