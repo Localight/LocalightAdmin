@@ -1,4 +1,4 @@
-<ion-view view-title="Promo Code Details">
+<ion-view view-title="Transaction Details">
   <ion-content>
       <div class="card">
         <div class="item item-text-wrap">
@@ -10,5 +10,11 @@
             Errors: <if ng-if="!(transaction.errors.length > 0)">None</if>{{transaction.errors}}<br />
         </div>
       </div>
+
+      <label class="item">
+        <button class="button button-block button-assertive"
+        type="submit"
+        ng-click = "createPromo()">Delete Promo</button>
+      </label>
   </ion-content>
 </ion-view>

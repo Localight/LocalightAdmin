@@ -36,7 +36,7 @@ angular.module('starter')
 
               //Stop loading, if we are loading
               loadingSpinner.stopLoading();
-              
+
               //Set the promocodes to the response
               $scope.promoCodes = response;
 
@@ -52,7 +52,7 @@ angular.module('starter')
 
       //Naviagation
       $scope.goToPromo = function(promoId){
-          $state.go('app.promoStats', {promoId: promoId});
+          $state.go('app.viewPromo', {promoId: promoId});
       }
 
       $scope.goToUsers = function(){
