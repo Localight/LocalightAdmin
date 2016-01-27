@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers',
       }
     })
     .state('app.promoCodes', {
-      url: '/promo/:id',
+      url: '/promo/view/:id',
       views: {
         'menuContent': {
           templateUrl: 'templates/promoCodes.html',

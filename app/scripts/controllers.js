@@ -338,6 +338,10 @@ angular.module('starter.controllers', [])
           $state.go('app.userStats');
       }
 
+      $scope.createPromo = function() {
+           $state.go('app.createPromo');
+      }
+
       //Graphing
       $scope.exampleData = [
         {
@@ -368,7 +372,7 @@ angular.module('starter.controllers', [])
 
     //Simply send a new promo code
     $scope.createPromo = function() {
-        
+
     }
 
 
