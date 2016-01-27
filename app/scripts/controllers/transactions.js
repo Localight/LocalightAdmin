@@ -2,7 +2,27 @@ angular.module('starter')
 
 .controller('TransactionsCtrl', function($scope, $state, $resource, $location, Transactions, Payout) {
 
+    //Initialization
+
+    //Selected items for payouts
+    $scope.selectedItems = {};
+    $scope.selectedItemsLength = 0;
+    $scope.getSelectedItems = function(clear){
+
+        if(clear){
+            for (var member in $scope.selectedItems) delete $scope.selectedItems[member];
+        }
+        $scope.selectedItemsLength = 0;
+        var keys = Object.keys($scope.selectedItems);
+        for(var i=0;i<keys.length;i++){
+            if($scope.selectedItems[keys[i]]){
+                $scope.selectedItemsLength++;
+            }
+        }
+    }
+
     $scope.filterOptions = {};
+    $scope.transactions = [];
     $scope.getTransactions = function(){
         var unpaid;
         if($scope.filterOptions.unpaid == true) unpaid = "false";
@@ -14,6 +34,8 @@ angular.module('starter')
             sessionToken: $scope.loggedIn
         });
     }
+    $scope.getTransactions();
+
 
     $scope.datepickerFrom = {
      titleLabel: 'Title',  //Optional
@@ -108,11 +130,11 @@ angular.module('starter')
 
          var payload = {
              transactions: payout,
-             method: "check"
+             method: "check",
+             sessionToken: $scope.loggedIn
          }
 
         Payout.create(payload, function(payout){
-            console.log(payout);
             $state.go('app.payout', {payoutId: payout._id});
         }, function(err){
             //Error

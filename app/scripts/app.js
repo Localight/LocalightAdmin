@@ -61,6 +61,7 @@ angular.module('starter', ['ionic',
     })
     .state('app.transactions', {
       url: '/transactions',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/transactions.html',

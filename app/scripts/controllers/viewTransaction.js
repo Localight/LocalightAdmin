@@ -5,6 +5,6 @@ angular.module('starter')
         id: $stateParams.transactionId,
         sessionToken: $scope.loggedIn
     }, function(result){
-        console.log(result);
+        //console.log(result);
     });
 });
